@@ -10,8 +10,8 @@ variable "location" {
 }
 
 variable "vm_size" {
-  type        = number
-  description = "AKS cluster VM size"
+  type        = string
+  description = "AKS cluster VM size/type"
 }
 
 variable "ssh_public_key" {

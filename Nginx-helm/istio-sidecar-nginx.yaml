@@ -1,0 +1,12 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Sidecar
+metadata:
+  name: ingress
+  namespace: ingress-nginx
+spec:
+  egress:
+  - hosts:
+    # any service in the default namespace (to communicate with the application)
+    - "default/*"
+    # any service in the istio-system namespace (to communicate with the istio control plane)
+    - "istio-system/*"

@@ -46,9 +46,9 @@ resource "azurerm_kubernetes_cluster" "aks" {
     network_plugin = "azure"
   }
 
-  # service_mesh_profile {
-  #   mode = "Istio"
-  # }
+  service_mesh_profile {
+    mode = "Istio"
+  }
 }
 
 resource "azurerm_container_registry" "acr" {
@@ -63,5 +63,12 @@ resource "azurerm_role_assignment" "acr_pull" {
   scope                = azurerm_resource_group.resource_group.id
   principal_id         = azurerm_kubernetes_cluster.aks.kubelet_identity[0].object_id
   role_definition_name = "AcrPull"
+  depends_on           = [azurerm_kubernetes_cluster.aks]
+}
+
+resource "azurerm_role_assignment" "vnet_contributor" {
+  scope                = azurerm_resource_group.resource_group.id
+  principal_id         = azurerm_kubernetes_cluster.aks.identity[0].principal_id
+  role_definition_name = "Network Contributor"
   depends_on           = [azurerm_kubernetes_cluster.aks]
 }

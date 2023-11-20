@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: application-ingress
+  namespace: application-ns
+  annotations:
+    #TODO: Can skip this if I define it in spec?
+    kubernetes.io/ingress.class: ingress-nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/service-upstream: "true"
+    nginx.ingress.kubernetes.io/upstream-vhost: httpbin.application-ns.svc.cluster.local
+spec:
+  ingressClassName: ingress-nginx
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: httpbin
+            port:
+              number: 8000
+        pathType: Prefix
+        path: /httpbin

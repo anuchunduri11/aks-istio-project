@@ -6,7 +6,7 @@ metadata:
 spec:
   egress:
   - hosts:
-    # any service in the default namespace (to communicate with the application)
-    - "default/*"
-    # any service in the istio-system namespace (to communicate with the istio control plane)
-    - "istio-system/*"
+    # any service in the application-ns namespace (to communicate with the application)
+    - "application-ns/*"
+    # any service in the aks-istio-system namespace (to communicate with the istio control plane)
+    - "aks-istio-system/*"

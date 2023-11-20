@@ -17,7 +17,7 @@ terraform {
     resource_group_name  = "anu-chunduri"
     storage_account_name = "anuchunduridevopssa"
     container_name       = "tfstate"
-    key                  = "k8s-istio.tfstate"
+    key                  = "aks-istio-labels.tfstate"
   }
 }
 

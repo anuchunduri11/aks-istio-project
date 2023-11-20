@@ -13,12 +13,6 @@ controller:
         digest: ""
       podAnnotations:
         sidecar.istio.io/inject: "false"
-  defaultBackend:
-    image:
-      registry: anuchunduridevopsacr.azurecr.io
-      image: defaultbackend-amd64
-      tag: 1.5
-      digest: ""
   service:
     annotations:
       service.beta.kubernetes.io/azure-load-balancer-internal: "true"
@@ -33,3 +27,11 @@ controller:
     traffic.sidecar.istio.io/excludeInboundPorts: "80,443"
     traffic.sidecar.istio.io/excludeOutboundIPRanges: "10.0.0.1/32" #serviceIP for kubernetes API server
     sidecar.istio.io/inject: "true"
+defaultBackend:
+  image:
+    registry: anuchunduridevopsacr.azurecr.io
+    image: defaultbackend-amd64
+    tag: 1.5
+    digest: ""
+  podAnnotations:
+    sidecar.istio.io/rewriteAppHTTPProbes: "true"

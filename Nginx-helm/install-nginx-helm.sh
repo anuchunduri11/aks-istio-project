@@ -15,7 +15,7 @@ helm repo update
 
 #Login to Docker and ACR using token and generated password or ACR login
 docker login -u anuadmintoken -p xyz anuchunduridevopsacr.azurecr.io
-az acr login -n anuchunduridevopsacr -u anuchunduridevopsacr -p j8kx/q8JUCk5HrYh2LSujDYKcv0Og6rfU2WQiVAKRh+ACRAONps6
+az acr login -n anuchunduridevopsacr -u anuchunduridevopsacr -p xyz
 
 #Import the 3 images used by nginx controller into your ACR
 REGISTRY_NAME=anuchunduridevopsacr
